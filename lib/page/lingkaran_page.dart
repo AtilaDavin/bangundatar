@@ -1,37 +1,35 @@
-
-import 'package:bangun_datar_kelas_b/controller/persegi_controller.dart';
+import 'package:bangun_datar_kelas_b/controller/lingkaran_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class  PersegiPage extends StatelessWidget {
-   PersegiPage ({super.key});
-final PersegiController _persegiController= Get.put(PersegiController());
+class  LingkaranPage extends StatelessWidget {
+  LingkaranPage ({super.key});
+  final LingkaranController _lingkaranController= Get.put(LingkaranController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Persegi Page"),),
+      appBar: AppBar(title: const Text("Lingkaran Page"),),
       body: Column(
         children: [
-          Image.asset("assets/PersegiWarna.png", height: 100,),
+          Image.asset("assets/LingkaranWarna.png", height: 100,),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text("Persegi", style: TextStyle(color: Colors.black),
+            child: Text("Lingkaran", style: TextStyle(color: Colors.black),
             ),
           ),
           Container(
             decoration: BoxDecoration(
-              color: Colors.green.shade400,borderRadius: BorderRadius.all(Radius.circular(10))
+                color: Colors.green.shade400,borderRadius: BorderRadius.all(Radius.circular(10))
             ),
-              margin: const EdgeInsets.all(8.0),
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Persegi merupakan turunan dari segi empat yang mempunyai ciri khusus keempat sisinya sama panjang dan keempat sudutnya siku-siku Persegi atau bujur sangkar adalah bangun datar dua dimensi yang dibentuk oleh empat buah rusuk yang sama panjang dan memiliki empat buah sudut yang kesemuanya adalah sudut siku-siku. Persegi merupakan turunan dari segi empat yang mempunyai ciri khusus keempat sisinya sama panjang dan keempat sudutnya siku-siku."),
-            ),
-
+            margin: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+                "Lingkaran merupakan turunan dari segi empat yang mempunyai ciri khusus keempat sisinya sama panjang dan keempat sudutnya siku-siku Persegi atau bujur sangkar adalah bangun datar dua dimensi yang dibentuk oleh empat buah rusuk yang sama panjang dan memiliki empat buah sudut yang kesemuanya adalah sudut siku-siku. Persegi merupakan turunan dari segi empat yang mempunyai ciri khusus keempat sisinya sama panjang dan keempat sudutnya siku-siku."),
+          ),
           Container(
             decoration: BoxDecoration(
-                color: Colors.blueAccent,borderRadius: BorderRadius.all(Radius.circular(10))
+                color: Colors.redAccent,borderRadius: BorderRadius.all(Radius.circular(10))
             ),
             margin: const EdgeInsets.all(8.0),
             padding: const EdgeInsets.all(8.0),
@@ -41,14 +39,14 @@ final PersegiController _persegiController= Get.put(PersegiController());
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     onChanged: (value){
-                      _persegiController.sisi = int.parse(value);
+                      _lingkaranController.r = double.parse(value);
                     },
 
                     decoration: InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
-                        labelText: "Sisi",
-                        hintText: "Masukkan Sisi",
+                        labelText: "Jari-jari",
+                        hintText: "Masukkan Jari",
                         hintStyle: TextStyle(color: Colors.grey.shade400),
                         contentPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
                         border: OutlineInputBorder(
@@ -69,7 +67,7 @@ final PersegiController _persegiController= Get.put(PersegiController());
                       padding: const EdgeInsets.all(8.0),
                       child:
                       ElevatedButton(onPressed: (){
-                        _persegiController.hitungLuas();
+                        _lingkaranController.hitungLuas();
                       }, child: Text("Hitung Luas", style: TextStyle(color: Colors.lightBlue)),
                         style: ButtonStyle(
                             backgroundColor:
@@ -81,7 +79,7 @@ final PersegiController _persegiController= Get.put(PersegiController());
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(onPressed: (){
-                        _persegiController.hitungKeliling();
+                        _lingkaranController.hitungKeliling();
                       }, child: Text("Hitung Keliling",  style: TextStyle(color: Colors.red)),
                         style: ButtonStyle(
                             backgroundColor:
@@ -93,21 +91,20 @@ final PersegiController _persegiController= Get.put(PersegiController());
               ],
             ),
           ),
-
-        Container(
-          decoration: BoxDecoration(
-              color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(10))
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(10))
+            ),
+            margin: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Obx(() => Text(_lingkaranController.hasil.value,
+                  style: TextStyle(color: _lingkaranController.textColor.value),
+                )),
+              ],
+            ),
           ),
-          margin: const EdgeInsets.all(8.0),
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Obx(() => Text(_persegiController.hasil.value,
-                style: TextStyle(color: _persegiController.textColor.value),
-              )),
-            ],
-          ),
-        ),
 
         ],
       ),
